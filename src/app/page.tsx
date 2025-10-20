@@ -1,103 +1,186 @@
-import Image from "next/image";
+'use client'
+
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+
+const fadeUp = { initial: {opacity:0, y:20}, animate:{opacity:1, y:0} }
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="min-h-screen text-slate-700">
+      {/* HEADER */}
+      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/60">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 h-16 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="h-8 w-8 rounded-full bg-emerald-500/90" />
+            <span className="font-semibold tracking-tight">PDRNet</span>
+          </Link>
+          <nav className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#how" className="hover:text-slate-900">Nasıl Çalışır</a>
+            <a href="#blog" className="hover:text-slate-900">Blog</a>
+            <a href="#faq" className="hover:text-slate-900">SSS</a>
+          </nav>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/login"
+              className="text-sm px-4 py-2 rounded-xl border border-emerald-600/30 text-emerald-700 hover:bg-emerald-50 transition"
+            >
+              Giriş Yap
+            </Link>
+            <Link
+              href="/login"
+              className="text-sm px-4 py-2 rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 transition"
+            >
+              Danışma Al
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </header>
+
+      {/* HERO */}
+      <section className="bg-gradient-to-br from-emerald-50 via-teal-50 to-sky-50">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+          <motion.div {...fadeUp} transition={{duration:.7}}>
+            <h1 className="text-4xl md:text-5xl font-semibold leading-tight text-slate-800">
+              Daha iyi hissetmeye <span className="text-emerald-600">bugün</span> başlayın.
+            </h1>
+            <p className="mt-4 text-lg text-slate-600">
+              Türkiye’nin dört bir yanından lisanslı psikolojik danışmanlarla
+              online veya yüz yüze, güvenli ve gizli görüşmeler.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/login"
+                className="px-6 py-3 rounded-2xl bg-emerald-600 text-white hover:bg-emerald-700 transition"
+              >
+                Ücretsiz Başla
+              </Link>
+              <Link
+                href="/login"
+                className="px-6 py-3 rounded-2xl border border-slate-300 hover:bg-white transition"
+              >
+                Danışman Ol
+              </Link>
+            </div>
+            <div className="mt-6 text-sm text-slate-500">
+              %100 gizlilik • Esnek zamanlar • Uzman eşleştirme
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="relative"
+            initial={{opacity:0, x:30}}
+            animate={{opacity:1, x:0}}
+            transition={{duration:.7}}
+          >
+            <img
+              src="/therapy-illustration.svg"
+              alt="Terapi illüstrasyonu"
+              className="w-full max-w-lg mx-auto drop-shadow-xl"
+            />
+            <div className="absolute -bottom-4 -left-4 h-28 w-28 rounded-3xl bg-emerald-200/60 blur-xl -z-10" />
+            <div className="absolute -top-6 -right-6 h-24 w-24 rounded-3xl bg-sky-200/60 blur-xl -z-10" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* TRUST / BADGES */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 py-10">
+          <p className="text-center text-sm text-slate-500 mb-6">Güvenle tercih edilen platform</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 opacity-80">
+            <div className="h-12 bg-slate-100 rounded-xl" />
+            <div className="h-12 bg-slate-100 rounded-xl" />
+            <div className="h-12 bg-slate-100 rounded-xl" />
+            <div className="h-12 bg-slate-100 rounded-xl" />
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section id="how" className="bg-gradient-to-tr from-white to-emerald-50/60">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 py-16">
+          <h2 className="text-2xl md:text-3xl font-semibold text-slate-800 text-center">
+            3 adımda destek alın
+          </h2>
+          <div className="mt-10 grid md:grid-cols-3 gap-6">
+            {[
+              {title:'İhtiyacını seç', desc:'Kaygı, ilişki, motivasyon, erteleme vb.'},
+              {title:'Danışmanını bul', desc:'Uzmanlık, şehir, puan ve fiyat filtreleri.'},
+              {title:'Görüşmeyi başlat', desc:'Online ya da yüz yüze, esnek zamanlar.'},
+            ].map((s,i)=>(
+              <div key={i} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/60">
+                <div className="h-10 w-10 rounded-xl bg-emerald-100 text-emerald-700 grid place-items-center font-semibold">
+                  {i+1}
+                </div>
+                <h3 className="mt-4 font-semibold text-slate-800">{s.title}</h3>
+                <p className="mt-2 text-slate-600 text-sm">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BLOG PREVIEW */}
+      <section id="blog" className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 py-16">
+          <div className="flex items-end justify-between">
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-800">Blog Yazıları</h2>
+            <Link href="/blog" className="text-emerald-700 hover:underline text-sm">Tümünü gör</Link>
+          </div>
+
+          <div className="mt-8 grid md:grid-cols-3 gap-6">
+            {[
+              {title:'Kaygıyla baş etmenin yolları', img:'/blog1.jpg', desc:'Günlük rutinde küçük değişikliklerle daha dengeli bir yaşam.'},
+              {title:'Online danışmanlık etkili mi?', img:'/blog2.jpg', desc:'Araştırmalar ve pratik önerilerle kısa bir rehber.'},
+              {title:'İlişkilerde sağlıklı sınırlar', img:'/blog3.jpg', desc:'Empati ve sınır dengesi için uygulanabilir ipuçları.'},
+            ].map((b,i)=>(
+              <article key={i} className="group rounded-2xl overflow-hidden border border-slate-200/70 hover:shadow-md transition">
+                <img src={b.img} alt={b.title} className="h-44 w-full object-cover group-hover:scale-[1.02] transition" />
+                <div className="p-5">
+                  <h3 className="font-semibold text-slate-800">{b.title}</h3>
+                  <p className="mt-1 text-sm text-slate-600">{b.desc}</p>
+                  <button className="mt-3 text-emerald-700 text-sm hover:underline">Devamını oku →</button>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="bg-gradient-to-br from-emerald-50 to-white">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 py-16">
+          <h2 className="text-2xl md:text-3xl font-semibold text-slate-800 text-center">Sıkça Sorulan Sorular</h2>
+          <div className="mt-8 divide-y divide-slate-200 rounded-2xl bg-white border border-slate-200/70">
+            {[
+              {q:'Gizlilik nasıl sağlanır?', a:'Tüm görüşmeler uçtan uca güvende; kişisel verileriniz KVKK kapsamında korunur.'},
+              {q:'Yüz yüze randevu mümkün mü?', a:'Evet, danışmanınıza göre şehir/ilçe bazında yüz yüze randevu alabilirsiniz.'},
+              {q:'Ücretlendirme nasıl?', a:'Danışmanın deneyimi ve seans süresine göre değişir; profil sayfasında yer alır.'},
+            ].map((f,i)=>(
+              <details key={i} className="group p-5">
+                <summary className="cursor-pointer list-none font-medium text-slate-800 flex items-center justify-between">
+                  {f.q}
+                  <span className="text-slate-400 group-open:rotate-180 transition">⌄</span>
+                </summary>
+                <p className="mt-2 text-slate-600">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-white border-t border-slate-200/70">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 py-10 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div>© {new Date().getFullYear()} PDRNet • Profesyonel Psikolojik Danışma</div>
+          <div className="flex items-center gap-4">
+            <a className="hover:text-slate-700" href="#">Gizlilik</a>
+            <a className="hover:text-slate-700" href="#">KVKK</a>
+            <a className="hover:text-slate-700" href="#">İletişim</a>
+          </div>
+        </div>
       </footer>
-    </div>
-  );
+    </main>
+  )
 }
