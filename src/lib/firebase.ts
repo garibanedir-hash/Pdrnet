@@ -1,17 +1,20 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+// src/lib/firebase.ts
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCO03cdJD_VVlS__DEFk0_9FA83JudHtXY",
-  authDomain: "pdrnet-7331f.firebaseapp.com",
-  projectId: "pdrnet-7331f",
-  storageBucket: "pdrnet-7331f.firebasestorage.app",
-  messagingSenderId: "233726317905",
-  appId: "1:233726317905:web:7ee3c3d96c90aa52daef70",
-  measurementId: "G-4K5SQ13WYG",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN!,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET!,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID!,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID!,
 };
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+// Next.js hot-reload’da “yeniden init” hatasını engelle
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+
 export const db = getFirestore(app);
+export const auth = getAuth(app);
+export const googleProvider = new GoogleAuthProvider();
