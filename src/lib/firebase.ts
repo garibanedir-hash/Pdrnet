@@ -3,17 +3,17 @@ import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
+// .env.local’dan geliyor
 const firebaseConfig = {
-  apiKey: "AIzaSyCSWXJ0hF_3yqa3SBTOEFkRQsFucpz4RgM",
-  authDomain: "pdr1-cba6d.firebaseapp.com",
-  projectId: "pdr1-cba6d",
-  storageBucket: "pdr1-cba6d.firebasestorage.app",
-  messagingSenderId: "105083128800",
-  appId: "1:105083128800:web:23c291aa15cf5699957985",
-  measurementId: "G-T190Y3SS8N",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN!,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET!,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID!,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID!,
 };
 
-// Next.js hot-reload’da “yeniden init” hatasını engelle
+// Tekrar initialize hatasını engelle
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 export const db = getFirestore(app);
